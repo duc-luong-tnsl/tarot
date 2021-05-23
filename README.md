@@ -1,0 +1,2 @@
+# tarot
+React-native project

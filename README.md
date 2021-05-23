@@ -1,2 +1,2 @@
 # tarot
-React-native project
+My react native app

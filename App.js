@@ -1,14 +1,23 @@
+// Base React modules
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Datting Apdddsssdp!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+// Project modules
+import Providers from './src/navigation'
+
+export default class App extends React.Component {
+
+  constructor() {
+    super()
+  }
+
+  render() {
+    return (
+      <Providers/>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

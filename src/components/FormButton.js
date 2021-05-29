@@ -1,29 +1,28 @@
 import React from 'react';
-import { Button, StyleSheet, Dimensions, View } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 
+const { width, height } = Dimensions.get('screen');
 
-const { width, height } = Dimensions.get("screen")
-
-
-const FormButton = props => {
-    return (
-        <View>
-            <Button
-                {...props}
-            />
-        </View> 
-    )
+export default function FormButton({ title, modeValue, ...rest }) {
+  return (
+      <Button
+          mode={modeValue}
+          {...rest}
+          style={styles.button}
+          contentStyle={styles.buttonContainer}
+      >
+        {title}
+      </Button>
+  );
 }
 
-
-const style = StyleSheet.create({
-    button: {
-        marginTop: 10
-    },
-    buttonContainer: {
-        width: width / 2,
-        height: height / 2
-    }
-})
-
-export default FormButton
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 10,
+  },
+  buttonContainer: {
+    width: width / 2,
+    height: height / 15,
+  },
+});

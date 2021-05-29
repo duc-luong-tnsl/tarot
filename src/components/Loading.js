@@ -1,25 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
-import {StyleSheet, View, ActivityIndicator} from 'react-native'
-
-
-export default class Loading extends React.Component {
-    render() {
-        return (
-            <View style={style.loadingContainer}>
-                <ActivityIndicator
-                    size="large"
-                    color="#5b3a70"
-                />
-            </View>
-        )
-    }
+export default function Loading() {
+  return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#5b3a70" />
+      </View>
+  );
 }
 
-const style = StyleSheet.create({
-    loadingContainer: {
-        flex: 1,
-        alignContent: 'center',
-        justifyContent: 'center'
-    }
-})
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

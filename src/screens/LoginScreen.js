@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native'
 import { Title } from 'react-native-paper'
 import { TextInput } from 'react-native-gesture-handler';
@@ -9,69 +9,40 @@ import FormInput from '../components/FormInput'
 import Loading from '../components/Loading'
 
 
-class LoginScreen extends React.Component {
-    state = {
-        email: '',
-        password: ''
-    }
+function LoginScreen({ navigation }){
 
-    handleUserName = name => {
-        this.setState({name})
-    }
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    handleUserPassword = password => {
-        this.setState({password})
-    }
+    return (
+        <View style={style.container}>
+            <Title style={style.titleText}>Wellcome Dating App!</Title>
+            <FormInput 
+                placeholder='Email'
+                keyboardType='email-address'
+                onChangeText={(userEmail) => setEmail(userEmail)}
+            />
+            <FormInput 
+                placeholder='Password'
+                keyboardType='email-address'
+                autoCompleteType='password'
+                secureTextEntry={true}
+                onChangeText={userPassword => setPassword(userPassword)}
 
-    handleLogin = () => {
-        console.log('Submit')
-    }
-
-    handleSignUp = () => {
-        console.log('Sign Up')
-    }
-
-    handleEmailChange = (email) => {
-        this.setState({email: email})
-    }
-
-    handlePasswordChange = () => {
-        this.setState({email: email})
-
-    }
-
-    render() {
-        return (
-            <View style={style.container}>
-                <Title style={style.titleText}>Wellcome Dating App!</Title>
-
-                <Text>{this.state.email}</Text>
-                <Text>{this.state.password}</Text>
-                <FormInput 
-                    placeholder='Email'
-                    keyboardType='email-address'
-                    onChangeText={this.handleEmailChange}
-                />
-                <FormInput 
-                    placeholder='Password'
-                    keyboardType='email-address'
-                    autoCompleteType='password'
-                    secureTextEntry={true}
-                    onChangeText={this.handleEmailChange}
-
-                />
-                <FormButton 
-                    style={style.loginButtonLabel} 
-                    title='Login' 
-                    onPress={this.handleLogin}
-                />
-                <FormButton 
-                    title='Sign up here' 
-                    onPress={this.handleSignUp}
-                />
-            </View>
-        )
-    }
+            />
+            <FormButton 
+                style={style.loginButtonLabel} 
+                title='Login' 
+                onPress={() => {
+                    console.log("Login")
+                }}
+            />
+            <FormButton 
+                title='Sign up here' 
+                onPress={() => navigation.navigate("Signup")}
+            />
+        </View>
+    )
 }
 
 

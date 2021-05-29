@@ -1,24 +1,30 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, TextInput } from 'react-native'
+import { StyleSheet, SafeAreaView, Dimensions } from 'react-native'
+import { TextInput } from 'react-native-paper'
 
 
-const FormInput = props => {
+const { width, height } = Dimensions.get('screen');
+
+
+const FormInput = ({ placeholder, ...rest }) => {
 
     return (
-        <SafeAreaView>
             <TextInput
-                {...props}
+                style={styles.input}
+                placeholder={placeholder}
+                numberOfLines={1}
+                {...rest}
             />
-        </SafeAreaView>
     )
 }
 
 
 const styles = StyleSheet.create({
     input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
+        marginTop: 10,
+        marginBottom: 10,
+        width: width / 1.5,
+        height: height / 15,
     },
   });
 

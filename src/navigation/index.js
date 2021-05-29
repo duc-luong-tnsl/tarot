@@ -2,12 +2,15 @@ import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
 
 // Project components
+import {AuthProvider} from './AuthProvider'
 import Router from './Router'
 
 const Providers = () => {
     return (
         <PaperProvider theme={theme}>
-            <Router/>
+            <AuthProvider>
+                <Router/>
+            </AuthProvider>
         </PaperProvider>
     )
 }

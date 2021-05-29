@@ -1,1 +1,1 @@
-export const APP_NAME = 'Mactch Maker'
+export const APP_NAME = 'Match Maker'

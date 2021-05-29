@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 
 // Project modules
-import { firebase, base } from '../firebase'
+import firebase from '../firebase'
 
 // Create a context
 export const AuthContext = createContext({});
@@ -23,21 +23,35 @@ export const AuthProvider = ({children}) => {
         setErrMessage,
   
         login: async (email, password) => {
-          console.log('user login')
+          setLoading(true)
+
+          try {
+              await firebase
+              .auth()
+              .signInWithEmailAndPassword(email, password)
+              .then( async result => console.log(result))
+              .catch( async error => console.log(error))
+          } catch(e) {
+            console.log("Error in sign in")
+            console.log(e)
+            
+          }
+          setLoading(false)
         },
 
         signup: async (displayName, email, password) => {
           
           setLoading(true)
           try {
-              console.log('I am in try')
-              await base
-              .auth()
-              .createUserWithEmailAndPassword(email, password)
-              .then( async (credential) => {
-                console.log('hello')
-              })
-              .catch( async (e) => setErrMessage(e.str))
+              const credential = await firebase.auth().createUserWithEmailAndPassword(email, password)
+   
+              try {
+                await credential.user.updateProfile({displayName: displayName,})
+                console.log('Update succes user display name')
+              } catch(e) {
+                console.error('Error in update user display name')
+                console.error(e)
+              }
           } catch(e) {
               console.error(`Error in sign up: {e}`)
           }
@@ -45,9 +59,14 @@ export const AuthProvider = ({children}) => {
         },
   
         logout: async () => {
-          console.log('user logout')
+          try {
+            await firebase.auth().signOut()
+            console.log('user logout')
+          } catch(e) {
+            console.log('error at logout')
+            console.log(e)
+          }
         }
-  
       }}
     >
       {children}

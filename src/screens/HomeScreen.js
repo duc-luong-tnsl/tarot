@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Title } from 'react-native-paper'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TextInput } from 'react-native'
 
 // Project modules
+import { APP_NAME } from '../constants'
 import FormButton from  '../components/FormButton'
-import APP_NAME from '../constants'
+import { AuthContext } from '../navigation/AuthProvider'
 
 
-export default function HomeScreen() {
+function HomeScreen() {
+  
+  // Load data from original context
+  const {user, logout} = useContext(AuthContext)
+
   return (
-    <View>
-      <Title>
-          {APP_NAME}
-      </Title>
-      <FormButton
-        modeValue='contained'
-        title="Logout"
-      />
+    <View style={styles.container}>
+      <Title> {APP_NAME} </Title>
+      <Title> Hello, {user.displayName} </Title>
+      <FormButton modeValue='contained' title="Logout" onPress={() => logout()}/>
     </View>
   )
 }
@@ -29,3 +30,5 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
+
+export default HomeScreen;

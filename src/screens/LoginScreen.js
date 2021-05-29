@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native'
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet } from 'react-native'
 import { Title } from 'react-native-paper'
-import { TextInput } from 'react-native-gesture-handler';
 
 // Project components
 import FormButton from '../components/FormButton'
 import FormInput from '../components/FormInput'
-import Loading from '../components/Loading'
+
+
+import { AuthContext } from  '../navigation/AuthProvider'
 
 
 function LoginScreen({ navigation }){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    // Context
+    const { login } = useContext(AuthContext)
+
 
     return (
         <View style={style.container}>
@@ -33,9 +38,7 @@ function LoginScreen({ navigation }){
             <FormButton 
                 style={style.loginButtonLabel} 
                 title='Login' 
-                onPress={() => {
-                    console.log("Login")
-                }}
+                onPress={() => login(email, password)}
             />
             <FormButton 
                 title='Sign up here' 

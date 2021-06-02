@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
           try {
               await firebase
               .auth()
-              .signInWithEmailAndPassword(email, password)
+              .signInWithEmailAndPassword('duc@gmail.com', 'maXluong$$0204')
               .then( async result => console.log(result))
               .catch( async error => console.log(error))
           } catch(e) {

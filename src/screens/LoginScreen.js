@@ -18,7 +18,6 @@ function LoginScreen({ navigation }){
     // Context
     const { login } = useContext(AuthContext)
 
-
     return (
         <View style={style.container}>
             <Title style={style.titleText}>Wellcome Dating App!</Title>

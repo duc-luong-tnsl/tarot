@@ -8,6 +8,8 @@ import FormButton from  '../components/FormButton'
 import { AuthContext } from '../navigation/AuthProvider'
 
 
+import OnboardingScreen from '../screens/OnboardingScreen'
+
 function HomeScreen() {
   
   // Load data from original context
@@ -15,9 +17,7 @@ function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Title> {APP_NAME} </Title>
-      <Title> Hello, {user.displayName} </Title>
-      <FormButton modeValue='contained' title="Logout" onPress={() => logout()}/>
+      <OnboardingScreen user={user}/>
     </View>
   )
 }
